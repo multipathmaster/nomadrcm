@@ -1,6 +1,5 @@
 #!/bin/bash
 #WRITTEN BY MULTIPATHMASTER BECAUSE BASH IS STILL AWESOME
-#10.10.10.5 is MY HA-PROXY/IPVSADM load balancer however statsd/graphite uses ipvsadm on the KVM main host for UDP routing of the events to graphite.
 #I understand these backticks are terrible looking, but understand you need to gather/query the actual shit from nomad in order to track it.
 #The idea here is that this is the master 'golf club' so to speak, but many players will be using it at the same time, so we will introduce arguments.
 #The arguments will be different calls to different until loops, and teh idea is to do a rc/slack post with the one that alerted at time of alert
