@@ -7,8 +7,7 @@ dead_man_switch.sh starts the nmd_evnt_mntr.sh instances, as well a providing ot
 nmd_evnt_mntr.sh is a collection of event monitors that call upon rocketc_alert.sh once a condition is met.<br>
 rocketc_alert.sh is the alerting mechanism.<br>
 
-#BREAK UP RESOURCES OR SINGLE CONTAINER QUESTION?:
-if you feel that the containers spawned from this are resource intensive.
+#BREAK UP INSTANCES OR SINGLE CONTAINER QUESTION?:
 1.  comment out all the monitors but one in dead_man_switch.sh
 2.  build the image and name it appropriately for that specific check.
 3.  build another one with a different one uncommented, name it appropriately, so on and so forth.
