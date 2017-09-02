@@ -4,8 +4,8 @@ A Nomad monitoring container for alerts in Rocket.Chat for common job problems/i
 WRITTEN BY: MULTIPATHMASTER<br>
 docker-entrypoint.sh is the entrypoint. It calls upon dead_man_switch.sh.<br>
 dead_man_switch.sh starts the nmd_evnt_mntr.sh instances, as well a providing other options.<br>
-nmd_evnt_mntr.sh is a collection of event monitors that call upon rocketc_alert.sh or slack_alert.sh once a condition is met.<br>
-rocketc_alert.sh/slack_alert.sh are the alerting scripts.<br>
+nmd_evnt_mntr.sh is a collection of event monitors that call upon rocketc_alert.sh once a condition is met.<br>
+rocketc_alert.sh is the alerting mechanism.<br>
 feel free to add your own for whatever you feel is necessary.<br>
 
 #BREAK UP RESOURCES OR SINGLE CONTAINER QUESTION?:<br>
@@ -20,7 +20,7 @@ if you feel that the containers spawned from this are resource intensive.
 
 STEPS FOR SOLO DEPLOYMENT:
 1.  edit the variables within the scripts for your environment.
-2.  test that it works by running dead_man_switch.sh loud/silent/talk/kill as well as rocketc||slack_alert.sh queued/running/failed/lost
+2.  test that it works by running dead_man_switch.sh loud/silent/talk/kill as well as rocketc_alert.sh queued/running/failed/lost
 3.  `docker build .`
 4.  `docker tag "ID FROM ABOVE" "NEW NAME"`
 5.  `docker run -it "NEW IMAGE NAME"`
@@ -29,7 +29,7 @@ STEPS FOR SOLO DEPLOYMENT:
 
 STEPS FOR DEPLOYING ON THE HASHICORP STACK: (CONSUL/NOMAD):
 1.  edit the variables within the scripts for your environment.
-2.  test that it works by running dead_man_switch.sh loud/silent/talk/kill as well as rocketc||slack_alert.sh queued/running/failed/lost
+2.  test that it works by running dead_man_switch.sh loud/silent/talk/kill as well as rocketc_alert.sh queued/running/failed/lost
 3.  `docker build .`
 4.  `docker tag "ID FROM ABOVE" "NEW NAME"`
 5.  export the image however you wish and place it in a repo.  i use a local repo w/ a simple registry container on
