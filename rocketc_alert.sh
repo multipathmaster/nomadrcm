@@ -39,7 +39,6 @@ generate_new_token(){
 curl -s ${SERV}/api/v1/login -d ${AUTH} | jq -r '' | egrep '(authToken|userId)' | sed s/\ //g | awk -F "\"" '{ print $4 }' > rocketcauth.$$
 }
 
-#COMMENT/UNCOMMENT BELOW IF YOU DONT CARE ABOUT SECURITY AT ALL
 view_tokens(){
 cat rocketcauth.$$
 }
