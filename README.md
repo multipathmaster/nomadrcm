@@ -8,7 +8,7 @@ nmd_evnt_mntr.sh is a collection of event monitors that call upon rocketc_alert.
 rocketc_alert.sh/slack_alert.sh are the alerting scripts.
 feel free to add your own for whatever you feel is necessary.
 
-#BREAK UP RESOURCES OR SINGLE CONTAINER QUESTION?:
+#BREAK UP RESOURCES OR SINGLE CONTAINER QUESTION?:<br>
 if you feel that the containers spawned from this are resource intensive.
 1.  comment out all the monitors but one in dead_man_switch.sh
 2.  build the image and name it appropriately for that specific check.
@@ -18,11 +18,11 @@ if you feel that the containers spawned from this are resource intensive.
 STEPS FOR SOLO DEPLOYMENT:
 1.  edit the variables within the scripts for your environment.
 2.  test that it works by running dead_man_switch.sh loud/silent/talk/kill as well as rocketc||slack_alert.sh queued/running/failed/lost
-3.  docker build .
-4.  docker tag "ID FROM ABOVE" "NEW NAME"
-5.  docker run -it "NEW IMAGE NAME"
-6.  docker ps #FIND CONTAINER
-7.  docker exec -it "CONTAINER" bash
+3.  `docker build .`
+4.  `docker tag "ID FROM ABOVE" "NEW NAME"`
+5.  `docker run -it "NEW IMAGE NAME"`
+6.  `docker ps #FIND CONTAINER`
+7.  `docker exec -it "CONTAINER" bash`
 
 STEPS FOR DEPLOYING ON THE HASHICORP STACK: (CONSUL/NOMAD):
 1.  edit the variables within the scripts for your environment.
@@ -89,6 +89,6 @@ job "nomadrcm" {
   }
 }
 ```
-4.  nomad plan nomadrcm.nomad
+4.  `nomad plan nomadrcm.nomad`
 5.  make any adjustments to the plan as you see fit(i.e. task/group/resources/service changes).
-6.  nomad run nomadrcm.nomad
+6.  `nomad run nomadrcm.nomad`
