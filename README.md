@@ -1,6 +1,5 @@
 # nomadrcm
-A Nomad monitoring container for alerts in Rocket.Chat for common job problems/issues.
-
+A Nomad monitoring container for alerts in Rocket.Chat for common job problems/issues.<br>
 WRITTEN BY: MULTIPATHMASTER<br>
 docker-entrypoint.sh is the entrypoint. It calls upon dead_man_switch.sh
 dead_man_switch.sh starts the monitoring service, as well a providing other options.
