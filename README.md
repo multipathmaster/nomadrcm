@@ -27,7 +27,11 @@ STEPS FOR SOLO DEPLOYMENT:
 STEPS FOR DEPLOYING ON THE HASHICORP STACK: (CONSUL/NOMAD):
 1.  edit the variables within the scripts for your environment.
 2.  test that it works by running dead_man_switch.sh loud/silent/talk/kill as well as rocketc||slack_alert.sh queued/running/failed/lost
-3.  copy the below config into nomadrcm.nomad (or whatever_name_you_wish.nomad/json/etc...)
+3.  `docker build .`
+4.  `docker tag "ID FROM ABOVE" "NEW NAME"`
+5.  export the image however you wish and place it in a repo.  i use a local repo w/ a simple registry container on
+port 5000.
+6.  copy the below config into nomadrcm.nomad (or whatever_name_you_wish.nomad/json/etc...)
 ```
 job "nomadrcm" {
   region = "YOUR_REGION"
@@ -89,8 +93,8 @@ job "nomadrcm" {
   }
 }
 ```
-4.  `nomad plan nomadrcm.nomad`
-5.  make any adjustments to the plan as you see fit(i.e. task/group/resources/service changes).
-6.  `nomad run nomadrcm.nomad` <br>
+7.  `nomad plan nomadrcm.nomad`
+8.  make any adjustments to the plan as you see fit(i.e. task/group/resources/service changes).
+9.  `nomad run nomadrcm.nomad` <br>
 <br>
 <img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/Nomad_Running.png>
