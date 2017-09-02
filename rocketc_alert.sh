@@ -43,7 +43,6 @@ view_tokens(){
 cat rocketcauth.$$
 }
 
-#
 #DONT TOUCH/MODIFY SPACING, ITLLLLLL BREAK, YOUVE BEEN WARNED
 alerting(){
 if [[ ${TYPE} == zombie ]]; then
