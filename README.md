@@ -13,8 +13,10 @@ if you feel that the containers spawned from this are resource intensive.
 1.  comment out all the monitors but one in dead_man_switch.sh
 2.  build the image and name it appropriately for that specific check.
 3.  build another one with a different one uncommented, name it appropriately, so on and so forth.
-4.  alternatively just run the bash scripts on a live host? but defeating fault tolerance of a task scheduler.
-5.  if you plan on running this on your hashicorp stack (consul/nomad). it would be wise to already have multiple datacenters setup, run this on one DC that is separate from the other, otherwise the "Running" check will not work if the very container/service that is monitoring the DC is also offline as well.  so if you have 2 DCs, run 2 of these instances, but point them to the nomad IPs/HOSTNAMES of the opposite DCs.
+4.  alternatively just run the bash scripts on a live host? but defeating fault tolerance of a task scheduler.<br>
+
+#HA PLAN?:<br>
+1.  if you plan on running this on your hashicorp stack (consul/nomad). it would be wise to already have multiple datacenters setup, run this on one DC that is separate from the other, otherwise the "Running" check will not work if the very container/service that is monitoring the DC is also offline as well.  so if you have 2 DCs, run 2 of these instances, but point them to the nomad IPs/HOSTNAMES of the opposite DCs.<br>
 
 STEPS FOR SOLO DEPLOYMENT:
 1.  edit the variables within the scripts for your environment.
