@@ -7,7 +7,7 @@
 
 #VARS
 #PUT YOUR NOMAD IP/HOSTNAME HERE
-SERV="http://10.10.10.5:4646/v1/jobs"
+SERV="http://NOMAD_IP_HOSTNAME:4646/v1/jobs"
 
 debugger(){
 set -x
