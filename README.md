@@ -1,11 +1,11 @@
 # nomadrcm
 A Nomad monitoring container for alerts in Rocket.Chat for common job problems/issues.<br>
 WRITTEN BY: MULTIPATHMASTER<br>
-docker-entrypoint.sh is the entrypoint. It calls upon dead_man_switch.sh
-dead_man_switch.sh starts the monitoring service, as well a providing other options.
-nmd_evnt_mntr.sh is a collection of event monitors that call upon rocketc_alert.sh or slack_alert.sh.
-rocketc_alert.sh/slack_alert.sh are the alerting scripts.
-feel free to add your own for whatever you feel is necessary.
+docker-entrypoint.sh is the entrypoint. It calls upon dead_man_switch.sh.<br>
+dead_man_switch.sh starts the nmd_evnt_mntr.sh instances, as well a providing other options.<br>
+nmd_evnt_mntr.sh is a collection of event monitors that call upon rocketc_alert.sh or slack_alert.sh once a condition is met.<br>
+rocketc_alert.sh/slack_alert.sh are the alerting scripts.<br>
+feel free to add your own for whatever you feel is necessary.<br>
 
 #BREAK UP RESOURCES OR SINGLE CONTAINER QUESTION?:<br>
 if you feel that the containers spawned from this are resource intensive.
