@@ -1,4 +1,5 @@
 # nomadrcm (Nomad Rocket.Chat Monitoring Service)
+<img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/Alert_Bot.png><br>
 A Nomad monitoring container for alerts in Rocket.Chat for common job problems/issues.<br>
 WRITTEN BY: MULTIPATHMASTER<br>
 docker-entrypoint.sh is the entrypoint. It calls upon dead_man_switch.sh.<br>
@@ -92,4 +93,4 @@ job "nomadrcm" {
 5.  make any adjustments to the plan as you see fit(i.e. task/group/resources/service changes).
 6.  `nomad run nomadrcm.nomad` <br>
 <br>
-Images in the img dir of screen captures.
+<img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/Nomad_Running.png>
