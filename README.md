@@ -30,7 +30,7 @@ STEPS FOR DEPLOYING ON THE HASHICORP STACK: (CONSUL/NOMAD):
 3.  `docker build .`
 4.  `docker tag "ID FROM ABOVE" "NEW NAME"`
 5.  export the image however you wish and place it in a repo.  i use a local repo w/ a simple registry container on
-port 5000.
+port 5000.  i.e. you can use artifactory or something similar instead.
 6.  copy the below config into nomadrcm.nomad (or whatever_name_you_wish.nomad/json/etc...)
 ```
 job "nomadrcm" {
