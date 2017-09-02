@@ -90,4 +90,5 @@ job "nomadrcm" {
 ```
 4.  `nomad plan nomadrcm.nomad`
 5.  make any adjustments to the plan as you see fit(i.e. task/group/resources/service changes).
-6.  `nomad run nomadrcm.nomad`
+6.  `nomad run nomadrcm.nomad` <br>
+Images in the img dir of screen captures.
