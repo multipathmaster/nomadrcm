@@ -1,21 +1,20 @@
 # nomadrcm (Nomad Rocket.Chat Monitoring Service)
 <img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/Alert_Bot.png><br>
 A Nomad monitoring container for alerts in Rocket.Chat for common job problems/issues.<br>
-WRITTEN BY: MULTIPATHMASTER<br>
+#QUICK OVERVIEW:<br>
 docker-entrypoint.sh is the entrypoint. It calls upon dead_man_switch.sh.<br>
 dead_man_switch.sh starts the nmd_evnt_mntr.sh instances, as well a providing other options.<br>
 nmd_evnt_mntr.sh is a collection of event monitors that call upon rocketc_alert.sh once a condition is met.<br>
 rocketc_alert.sh is the alerting mechanism.<br>
-feel free to add your own for whatever you feel is necessary.<br>
 
-#BREAK UP RESOURCES OR SINGLE CONTAINER QUESTION?:<br>
+#BREAK UP RESOURCES OR SINGLE CONTAINER QUESTION?:
 if you feel that the containers spawned from this are resource intensive.
 1.  comment out all the monitors but one in dead_man_switch.sh
 2.  build the image and name it appropriately for that specific check.
 3.  build another one with a different one uncommented, name it appropriately, so on and so forth.
 4.  alternatively just run the bash scripts on a live host? but defeating fault tolerance of a task scheduler.<br>
 
-#HA PLAN?:<br>
+#HA PLAN?:
 1.  if you plan on running this on your hashicorp stack (consul/nomad). it would be wise to already have multiple datacenters setup, run this on one DC that is separate from the other, otherwise the "Running" check will not work if the very container/service that is monitoring the DC is also offline as well.  so if you have 2 DCs, run 2 of these instances, but point them to the nomad IPs/HOSTNAMES of the opposite DCs.  if you have 3 DCs, you will need at least 4 instances, and after that, you should probably dedicate a DC solely for monitoring the rest of the configured REGION/REGIONS.<br>
 
 STEPS FOR SOLO DEPLOYMENT:
