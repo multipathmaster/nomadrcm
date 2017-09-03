@@ -11,4 +11,4 @@ ADD nmd_evnt_mntr.sh /usr/local/bin/nmd_evnt_mntr.sh
 ADD rocketc_alert.sh /usr/local/bin/rocketc_alert.sh
 ADD docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
-CMD ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
