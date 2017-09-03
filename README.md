@@ -22,7 +22,7 @@ STEPS FOR SOLO DEPLOYMENT:
 2.  test that it works by running dead_man_switch.sh loud/silent/talk/kill as well as rocketc_alert.sh queued/running/failed/lost
 3.  `docker build .`
 4.  `docker tag "ID FROM ABOVE" "NEW NAME"`
-5.  `docker run -it -e NOMAD_JOB_PHN='http://NOMAD_SERVER_IP:4646/v1/jobs' -e NOMAD_SRV_JOB_PATH='http://NOMAD_SERVER_IP:3000/nomad/REGION/jobs' -e RC_SRV_PRT='http://Rocket.Chat.SERVER:3000' -e RC_AUTH='username=BOTNAME&password=BOTPASSWD' "NEW IMAGE NAME"`
+5.  `docker run -it -e NOMAD_JOB_IPHN='http://NOMAD_SERVER_IP:4646/v1/jobs' -e NOMAD_SRV_JOB_PATH='http://NOMAD_SERVER_IP:3000/nomad/REGION/jobs' -e RC_SRV_PRT='http://Rocket.Chat.SERVER:3000' -e RC_AUTH='username=BOTNAME&password=BOTPASSWD' "NEW IMAGE NAME"`
 6.  `docker ps #FIND CONTAINER`
 7.  `docker exec -it "CONTAINER" bash`
 
