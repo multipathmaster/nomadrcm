@@ -75,7 +75,7 @@ job "nomadrcm" {
       }
       resources {
         cpu    = 32
-        memory = 128
+        memory = 64
         network {
           mbits = 10
         }
