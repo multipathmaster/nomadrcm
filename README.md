@@ -70,7 +70,7 @@ job "nomadrcm" {
       }
       env {
         NOMAD_JOB_IPHN="http://NOMAD_SERVER_IP:4646/v1/jobs"
-        NOMAD_SRV_JOB_PATH="http://NOMAD_SERVER_IP:3000/nomad/HOUSE/jobs"
+        NOMAD_SRV_JOB_PATH="http://NOMAD_SERVER_IP:3000/nomad/REGION/jobs"
         RC_SRV_PRT="http://Rocket.Chat.SERVER:3000"
         RC_AUTH="username=BOTNAME&password=BOTPASSWD"
       }
