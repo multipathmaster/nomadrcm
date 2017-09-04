@@ -22,43 +22,53 @@ TYPE=$1
 #THE ECHO STATMENTS ARE MEANINGFUL IF YOU RUN DEADMAN WITH LOUD ARGUMENT
 
 queued_checker(){
-#RUN UNTIL I SEE A QUEUED JOB
-until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Queued" | grep -v 0 | wc -l` -ne 0 ]]; do
-echo "INFO: Not Detecting..."
-echo "INFO: Sleeping..."
-#HOW FAST WE ARE CHECKING FOR THE CONDITION
-sleep 1
-  #LOUD ALERTING TYPE
+while : ; do
   if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Queued" | grep -v 0 | wc -l` -gt 0 ]]; then
-    echo "ALERT: ALERTING, BREAKING LOOP TO ALERT. THERE ARE QUEUED JOBS."
-    #SHIFT INTO SILENT/LOUD ALERTING MECHANISM
     while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Queued" | grep -v 0 | wc -l` -gt 0 ]]; do
-      #RC/SLACK POST GOES HERE
       /usr/local/bin/rocketc_alert.sh queued
       sleep 300
     done
   else
-    #ONCE THE CONDITION IS FIXED, BREAK OUT INTO THIS UNTIL LOOP TO PREPARE FOR THE NEXT LOOP
-    echo "INFO: Everything normal in sub loop checker Queued."
-    echo "INFO: Loop Phase..."
+    until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Queued" | grep -v 0 | wc -l` -ne 0 ]]; do
+      echo "INFO: Not Detecting..."
+      echo "INFO: Sleeping..."
+      sleep 1
+      if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Queued" | grep -v 0 | wc -l` -gt 0 ]]; then
+        while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Queued" | grep -v 0 | wc -l` -gt 0 ]]; do
+          /usr/local/bin/rocketc_alert.sh queued
+          sleep 300
+        done
+      else
+        echo "INFO: Everything normal in sub loop checker Queued."
+        echo "INFO: Loop Phase..."
+      fi
+    done
   fi
 done
 }
 
 failed_checker(){
-until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Failed" | grep -v 0 | wc -l` -ne 0 ]]; do
-echo "INFO: Not Detecting..."
-echo "INFO: Sleeping..."
-sleep 1
+while : ; do
   if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Failed" | grep -v 0 | wc -l` -gt 0 ]]; then
-    echo "ALERT: ALERTING, BREAKING LOOP TO ALERT. THERE ARE FAILED JOBS."
     while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Failed" | grep -v 0 | wc -l` -gt 0 ]]; do
       /usr/local/bin/rocketc_alert.sh failed
       sleep 300
     done
   else
-    echo "INFO: Everything normal in sub loop checker Failed."
-    echo "INFO: Next Loop Phase..."
+    until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Failed" | grep -v 0 | wc -l` -ne 0 ]]; do
+      echo "INFO: Not Detecting..."
+      echo "INFO: Sleeping..."
+      sleep 1
+      if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Failed" | grep -v 0 | wc -l` -gt 0 ]]; then
+        while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Failed" | grep -v 0 | wc -l` -gt 0 ]]; do
+          /usr/local/bin/rocketc_alert.sh failed
+          sleep 300
+        done
+      else
+        echo "INFO: Everything normal in sub loop checker Failed."
+        echo "INFO: Next Loop Phase..."
+      fi
+    done
   fi
 done
 }
@@ -79,19 +89,27 @@ done
 }
 
 lost_checker(){
-until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Lost" | grep -v 0 | wc -l` -ne 0 ]]; do
-echo "INFO: Not Detecting..."
-echo "INFO: Sleeping..."
-sleep 1
+while : ; do
   if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Lost" | grep -v 0 | wc -l` -gt 0 ]]; then
-    echo "ALERT: ALERTING, BREAKING LOOP TO ALERT. THERE ARE LOST JOBS."
     while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Lost" | grep -v 0 | wc -l` -gt 0 ]]; do
       /usr/local/bin/rocketc_alert.sh lost
       sleep 300
     done
   else
-    echo "INFO: Everything normal in sub loop checker Lost."
-    echo "INFO: Next Loop Phase..."
+    until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Lost" | grep -v 0 | wc -l` -ne 0 ]]; do
+      echo "INFO: Not Detecting..."
+      echo "INFO: Sleeping..."
+      sleep 1
+      if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Lost" | grep -v 0 | wc -l` -gt 0 ]]; then
+        while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Lost" | grep -v 0 | wc -l` -gt 0 ]]; do
+          /usr/local/bin/rocketc_alert.sh lost
+          sleep 300
+        done
+      else
+        echo "INFO: Everything normal in sub loop checker Lost."
+        echo "INFO: Next Loop Phase..."
+      fi
+    done
   fi
 done
 }
@@ -112,10 +130,7 @@ done
 }
 
 running_checker(){
-until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Running" | grep -v 0 | wc -l` == 0 ]]; do
-echo "INFO: Not Detecting..."
-echo "INFO: Sleeping..."
-sleep 1
+while : ; do
   if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Running" | grep -v 0 | wc -l` == 0 ]]; then
     echo "ALERT: ALERTING, THERE ARE NO RUNNING JOBS."
     while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Running" | grep -v 0 | wc -l` == 0 ]]; do
@@ -123,8 +138,21 @@ sleep 1
       sleep 300
     done
   else
-    echo "INFO: Everything normal in sub loop checker Running."
-    echo "INFO: Next Loop Phase..."
+    until [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Running" | grep -v 0 | wc -l` == 0 ]]; do
+      echo "INFO: Not Detecting..."
+      echo "INFO: Sleeping..."
+      sleep 1
+      if [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Running" | grep -v 0 | wc -l` == 0 ]]; then
+        echo "ALERT: ALERTING, THERE ARE NO RUNNING JOBS."
+          while [[ `curl -s -X GET ${SERV} | jq -r '.[] | {Name, Status: .JobSummary.Summary}' | grep "Running" | grep -v 0 | wc -l` == 0 ]]; do
+            /usr/local/bin/rocketc_alert.sh running
+            sleep 300
+          done
+      else
+        echo "INFO: Everything normal in sub loop checker Running."
+        echo "INFO: Next Loop Phase..."
+      fi
+    done
   fi
 done
 }
@@ -152,5 +180,5 @@ else
 fi
 }
 
-#debugger
+debugger
 main $@

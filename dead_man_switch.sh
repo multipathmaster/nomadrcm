@@ -60,5 +60,5 @@ else
 fi
 }
 
-#debugger
+debugger
 main $@
