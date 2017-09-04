@@ -18,14 +18,14 @@ rocketc_alert.sh is the alerting mechanism.<br>
 1.  if you plan on running this on your hashicorp stack (consul/nomad), it would be wise to already have multiple datacenters setup, run this on one DC that is separate from the other, otherwise the "Running" check will not work if the very container/service that is monitoring the DC is also offline as well.  so if you have 2 DCs, run 2 of these instances, but point them to the nomad IPs/HOSTNAMES of the opposite DCs.  if you have 3 DCs, you will need at least 4 instances, and after that, you should probably dedicate a DC solely for monitoring the rest of the configured REGION/REGIONS.<br>
 
 STEPS FOR SOLO DEPLOYMENT:
-1.  `docker build .`
-2.  `docker tag "ID FROM ABOVE" "NEW NAME"`
+1.  `docker build .` OR `docker pull multipathmaster/nomadrcm`
+2.  `docker tag "ID FROM ABOVE" "NEW NAME"` IGNORE IF DOCKER PULL
 3.  `docker run -it -e NOMAD_JOB_IPHN='http://NOMAD_SERVER_IP:4646/v1/jobs' -e NOMAD_SRV_JOB_PATH='http://NOMAD_SERVER_IP:3000/nomad/REGION/jobs' -e RC_SRV_PRT='http://Rocket.Chat.SERVER:3000' -e RC_AUTH='username=BOTNAME&password=BOTPASSWD' "NEW IMAGE NAME"`
 4.  `docker ps #FIND CONTAINER`
 5.  `docker exec -it "CONTAINER" bash`
 
 STEPS FOR DEPLOYING ON THE HASHICORP STACK: (CONSUL/NOMAD):
-1.  `docker build .`
+1.  `docker build .` OR `docker pull multipathmaster/nomadrcm`
 2.  `docker tag "ID FROM ABOVE" "NEW NAME"`
 3.  export the image however you wish and place it in a repo.  i use a local repo w/ a simple registry container on
 port 5000.  i.e. you can use artifactory or something similar instead.
