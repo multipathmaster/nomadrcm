@@ -21,7 +21,7 @@ rocketc_alert.sh is the alerting mechanism.<br>
 STEPS FOR SOLO DEPLOYMENT:
 1.  `docker build .` OR `docker pull multipathmaster/nomadrcm`
 2.  `docker tag "ID FROM ABOVE" "NEW NAME"` IGNORE IF DOCKER PULL
-3.  `docker run -it -e NOMAD_JOB_IPHN='http://NOMAD_SERVER_IP:4646/v1/jobs' -e NOMAD_SRV_JOB_PATH='http://NOMAD_SERVER_IP:3000/nomad/REGION/jobs' -e RC_SRV_PRT='http://Rocket.Chat.SERVER:3000' -e RC_AUTH='username=BOTNAME&password=BOTPASSWD' "NEW IMAGE NAME"`
+3.  `docker run -it -e NOMAD_JOB_IPHN='http://NOMAD_SERVER_IP:4646/v1/jobs' -e NOMAD_SRV_JOB_PATH='http://NOMAD_SERVER_IP:3000/nomad/REGION/jobs' -e RC_SRV_PRT='http://Rocket.Chat.SERVER:3000' -e RC_AUTH='username=BOTNAME&password=BOTPASSWD' "NEW IMAGE NAME"` OR `multipathmaster/nomadrcm`
 4.  `docker ps #FIND CONTAINER`
 5.  `docker exec -it "CONTAINER" bash`
 
