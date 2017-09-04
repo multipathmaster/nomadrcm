@@ -101,3 +101,7 @@ job "nomadrcm" {
 <br>
 <img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/Nomad_Running.png>
 <br>
+<img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/stderr.png>
+<br>
+<img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/stdout.png>
+<br>
