@@ -1,10 +1,6 @@
-FROM fedora:latest
+FROM gliderlabs/alpine:3.4
 
-RUN yum -y update && \
-yum -y install bash && \
-yum -y install procps-ng && \
-yum -y install curl && \
-yum -y install jq
+RUN apk add --no-cache bash curl jq
 
 ADD dead_man_switch.sh /usr/local/bin/dead_man_switch.sh
 ADD nmd_evnt_mntr.sh /usr/local/bin/nmd_evnt_mntr.sh
