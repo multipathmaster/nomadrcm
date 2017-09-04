@@ -29,7 +29,7 @@ STEPS FOR DEPLOYING ON THE HASHICORP STACK: (CONSUL/NOMAD):
 1.  `docker build .` OR `docker pull multipathmaster/nomadrcm`
 2.  `docker tag "ID FROM ABOVE" "NEW NAME"`
 3.  export the image however you wish and place it in a repo.  i use a local repo w/ a simple registry container on
-port 5000.  i.e. you can use artifactory or something similar instead.
+port 5000.  i.e. you can use artifactory or something similar instead.  Or use multipathmaster/nomadrcm.
 4.  copy the below config into nomadrcm.nomad (or whatever_name_you_wish.nomad/json/etc...)
 ```
 job "nomadrcm" {
@@ -62,7 +62,7 @@ job "nomadrcm" {
     task "nomadrcm" {
       driver = "docker"
       config {
-        #image = "localhost:5000/nomad_rc_monitor"
+        image = "multipathmaster/nomadrcm:latest"
         network_mode = "host"
         port_map = {
         }
