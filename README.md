@@ -4,6 +4,7 @@ https://hub.docker.com/r/multipathmaster/nomadrcm <br>
 <br>
 <img src=https://raw.githubusercontent.com/multipathmaster/nomadrcm/master/img/Alert_Bot.png><br>
 #QUICK OVERVIEW:<br>
+DEPLOYMENT RECENTLY RAN AGAINST CONSUL 1.0.0 and NOMAD 0.7.0 - WORKS - YES <br>
 this deployment assumes you have hashi-ui or some other fork/clone running.<br>
 docker-entrypoint.sh is the entrypoint. It calls upon dead_man_switch.sh.<br>
 dead_man_switch.sh starts the nmd_evnt_mntr.sh instances, as well a providing other options.<br>
